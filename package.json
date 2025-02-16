@@ -1,0 +1,42 @@
+{
+  "name": "ergolight-theme",
+  "displayName": "Ergolight Theme",
+  "description": "An ergonomic light theme for Visual Studio Code",
+  "version": "0.1.10",
+  "publisher": "goncin",
+  "license": "MIT",
+  "galleryBanner": {
+      "color": "#0074e8",
+      "theme": "light"
+  },
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/faustocintra/vscode-ergolight-theme.git"
+	},
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Ergolight Theme",
+        "uiTheme": "vs",
+        "path": "./themes/ergolight-color-theme.json"
+      }
+    ]
+  },
+  "keywords": [
+    "ergolight",
+    "theme",
+    "light",
+    "eye-friendly"
+  ],
+  "bugs": {
+    "url": "https://github.com/faustocintra/vscode-ergolight-theme/issues",
+    "email": "professor@faustocintra.com.br"
+  },
+  "homepage": "https://github.com/faustocintra/vscode-ergolight-theme"
+}
