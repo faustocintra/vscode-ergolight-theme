@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@import url("./tokens.css") layer(tokens);
+
+:root {
+  --accent: #0074E8;
+  --warning: rgb(218 165 32);
+  --surface: hsl(0deg 0% 100%);
+  color-scheme: light;
+}
+
+@layer components {
+  .order-card,
+  article[data-state="paid"] {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1fr) auto;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    margin: 0;
+    padding: 1rem;
+    color: var(--accent);
+    background:
+      linear-gradient(90deg, rgb(255 255 255 / 100%), rgb(0 116 232 / 8%)),
+      var(--surface);
+    border: 1px solid color-mix(in srgb, var(--accent), white 70%);
+  }
+
+  .order-card:is(:hover, :focus-within) > .title::before {
+    content: "status: ";
+    color: var(--warning);
+  }
+
+  .order-card:not(.is-disabled) input[type="checkbox"]:checked + label {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
+@media (width >= 48rem) {
+  #dashboard {
+    container-type: inline-size;
+  }
+}
+

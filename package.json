@@ -2,11 +2,12 @@
   "name": "ergolight-theme",
   "displayName": "Ergolight Theme",
   "description": "An ergonomic light theme for Visual Studio Code",
-  "version": "0.1.26",
+  "version": "1.0.0",
   "publisher": "goncin",
   "license": "MIT",
+  "icon": "images/icon.png",
   "galleryBanner": {
-      "color": "#2a76c6",
+      "color": "#2A76C6",
       "theme": "light"
   },
   "engines": {

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="ergolight">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Visual token sample for HTML, attributes, entities and embedded code.">
+    <title>Ergolight HTML Sample</title>
+    <style>
+      :root {
+        --accent: #0074E8;
+        --surface: #FFFFFF;
+      }
+
+      body {
+        margin: 0;
+        color: #546E7A;
+        background: var(--surface);
+        font-family: system-ui, sans-serif;
+      }
+
+      .order-card[data-state="paid"] > h1::before {
+        content: "status: ";
+        color: var(--accent);
+      }
+    </style>
+    <script type="module">
+      const status = "paid";
+      const pattern = /^(draft|paid|shipped)$/i;
+
+      class OrderElement extends HTMLElement {
+        connectedCallback() {
+          this.dataset.ready = String(pattern.test(status));
+        }
+      }
+
+      customElements.define("order-card", OrderElement);
+    </script>
+  </head>
+  <body>
+    <!-- Comments, tags, attributes, entities, forms and embedded CSS/JS. -->
+    <main id="app" class="layout" aria-live="polite">
+      <order-card class="order-card" data-state="paid">
+        <h1>Pedido &amp; avaliação visual</h1>
+        <p>
+          Texto com <strong>negrito</strong>, <em>itálico</em>,
+          <code>inlineCode()</code> e <a href="https://example.test/orders?status=paid#top">link</a>.
+        </p>
+        <form action="/orders" method="post">
+          <label for="status">Status</label>
+          <select id="status" name="status" required>
+            <option value="draft">Draft</option>
+            <option value="paid" selected>Paid</option>
+            <option value="shipped">Shipped</option>
+          </select>
+          <input type="number" min="0" max="999" step="0.01" value="19.90">
+          <button type="submit" disabled>Salvar</button>
+        </form>
+      </order-card>
+    </main>
+  </body>
+</html>

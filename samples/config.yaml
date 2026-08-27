@@ -1,0 +1,17 @@
+---
+name: ergolight
+enabled: true
+version: 1
+colors:
+  primary: "#0074E8"
+  method: "#8B008B"
+  annotation: "#5C6BC0"
+anchors:
+  defaults: &defaults
+    retries: 3
+    timeout: 1.5
+jobs:
+  - <<: *defaults
+    name: build
+    command: npm run package
+

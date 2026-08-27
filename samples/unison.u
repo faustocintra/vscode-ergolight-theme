@@ -1,0 +1,19 @@
+unique type Status = Draft | Paid | Shipped
+
+ability Log where
+  info : Text ->{Log} ()
+
+Order.Id : Type
+Order.Id = Nat
+
+renderStatus : Status -> Text
+renderStatus = cases
+  Draft -> "draft"
+  Paid -> "paid"
+  Shipped -> "shipped"
+
+handleLog : '{Log, g} a ->{g} a
+handleLog program =
+  handle !program with cases
+    { info message -> resume } -> resume ()
+

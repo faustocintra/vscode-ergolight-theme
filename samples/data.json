@@ -1,0 +1,12 @@
+{
+  "name": "Ergolight",
+  "enabled": true,
+  "version": 1,
+  "colors": ["#0074E8", "#8B008B", "#5C6BC0"],
+  "nested": {
+    "nullValue": null,
+    "scientific": 1.2e-3,
+    "escaped": "line\nquote\"slash\\"
+  }
+}
+

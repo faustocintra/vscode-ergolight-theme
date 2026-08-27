@@ -1,0 +1,32 @@
+$accent: #0074E8;
+$warning: rgb(218, 165, 32);
+$spacing: 0.75rem;
+
+@mixin focus-ring($color: $accent) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}
+
+:root {
+  --surface: #FFFFFF;
+  --muted: hsl(192deg 18% 40%);
+}
+
+.order-card[data-state="paid"] {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) auto;
+  gap: calc($spacing * 2);
+  color: var(--muted);
+  background: linear-gradient(90deg, white, rgba($accent, 0.08));
+
+  &:hover,
+  &:focus-visible {
+    @include focus-ring($warning);
+  }
+
+  > .title::before {
+    content: "status:";
+    color: $accent;
+  }
+}
+

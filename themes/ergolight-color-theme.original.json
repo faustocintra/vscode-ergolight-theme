@@ -83,18 +83,6 @@
       "foreground": "#FA8072",
       "fontStyle": "italic"
     },
-    "variable:java": {
-      "foreground": "#FA8072",
-      "fontStyle": ""
-    },
-    "variable.readonly:java": {
-      "foreground": "#FA8072",
-      "fontStyle": ""
-    },
-    "property:java": {
-      "foreground": "#FA8072",
-      "fontStyle": ""
-    },
     "parameter:python": {
       "foreground": "#FA8072",
       "fontStyle": "italic"
@@ -199,6 +187,7 @@
     }
   },
   "tokenColors": [
+    // -- Basic Elements --
     {
       "name": "Constants",
       "scope": [
@@ -206,9 +195,19 @@
         "support.constant"
       ],
       "settings": {
-        "foreground": "#82AE2A"
+        "foreground": "#82AE2A" 
       }
     },
+    // {
+    //   "name": "Characters and numbers",
+    //   "scope": [
+    //     "constant.numeric",
+    //     "constant.character"
+    //   ],
+    //   "settings": {
+    //     "foreground": "#82AE2A" 
+    //   }
+    // },
     {
       "name": "Normal text and variables",
       "scope": [
@@ -218,7 +217,7 @@
         "text.bracketed"
       ],
       "settings": {
-        "foreground": "#546E7A"
+        "foreground": "#546E7A" 
       }
     },
     {
@@ -234,6 +233,8 @@
         "foreground": "#8B008B"
       }
     },
+    
+    // -- Operators and Punctuation --
     {
       "name": "Logical and math operators",
       "scope": [
@@ -473,10 +474,11 @@
         "foreground": "#8B008B"
       }
     },
+    
     {
       "name": "jsx component",
       "scope": [
-        "support.class.component.js.jsx",
+        "support.class.component.js.jsx", 
         "entity.name.tag.js.jsx",
         "support.class.component.js",
         "entity.name.tag.js"
@@ -489,12 +491,13 @@
     {
       "name": "jsx component prop and delimiters",
       "scope": [
-        "entity.other.attribute-name.js.jsx"
+        "entity.other.attribute-name.js.jsx",
       ],
       "settings": {
         "foreground": "#82AE2A"
       }
     },
+
     {
       "name": "java type",
       "scope": [
@@ -653,7 +656,8 @@
       "name": "js/ts module",
       "scope": [
         "support.module.node",
-        "support.type.object.module"
+        "support.type.object.module",
+        "support.module.node"
       ],
       "settings": {
         "foreground": "#0074E8"
@@ -1377,15 +1381,15 @@
       "name": "Attribute IDs",
       "scope": "entity.other.attribute-name.id",
       "settings": {
-        "foreground": "#0074E8"
+                "foreground": "#0074E8"
       }
     },
     {
       "name": "Attribute class",
       "scope": "entity.other.attribute-name.class.css",
       "settings": {
-        "foreground": "#0074E8",
-        "fontStyle": ""
+                "foreground": "#0074E8",
+                "fontStyle": ""
       }
     },
     {
@@ -1631,8 +1635,7 @@
         "foreground": "#B22222"
       }
     },
-    {
-      "name": "Unimplemented",
+    {"name": "Unimplemented",
       "scope": "invalid.unimplemented",
       "settings": {
         "foreground": "#B22222"
@@ -1831,7 +1834,8 @@
         "punctuation.definition.end.bracket.curly.php",
         "punctuation.definition.section.switch-block.end.bracket.curly.php",
         "punctuation.definition.section.switch-block.start.bracket.curly.php",
-        "punctuation.definition.section.switch-block.begin.bracket.curly.php"
+        "punctuation.definition.section.switch-block.begin.bracket.curly.php",
+        "punctuation.definition.section.switch-block.end.bracket.curly.php"
       ],
       "settings": {
         "foreground": "#546E7A"
@@ -2324,7 +2328,8 @@
         "support.type.sampler.hlsl",
         "support.type.object.hlsl",
         "support.type.object.rw.hlsl",
-        "support.type.fx.hlsl"
+        "support.type.fx.hlsl",
+        "support.type.object.hlsl"
       ],
       "settings": {
         "foreground": "#DD00A9"
@@ -2802,26 +2807,6 @@
       "settings": {
         "foreground": "#DD00A9",
         "fontStyle": "italic"
-      }
-    },
-    {
-      "name": "Java variables final",
-      "scope": [
-        "meta.definition.variable.name.java",
-        "variable.other.java",
-        "variable.other.object.java",
-        "variable.other.property.java",
-        "variable.other.field.java",
-        "variable.other.readwrite.java",
-        "source.java variable.other",
-        "source.java meta.definition.variable.name",
-        "source.java meta.definition.variable variable.other",
-        "source.java meta.field.declaration variable.other",
-        "source.java meta.method.body.java variable.other"
-      ],
-      "settings": {
-        "foreground": "#FA8072",
-        "fontStyle": ""
       }
     },
     {
@@ -3392,6 +3377,6 @@
     "titleBar.inactiveForeground": "#33333399",
     "tree.indentGuidesStroke": "#FCFCFC",
     "walkThrough.embeddedEditorBackground": "#00000050",
-    "widget.shadow": "#00000029"
+    "widget.shadow": "#00000029",
   }
 }
