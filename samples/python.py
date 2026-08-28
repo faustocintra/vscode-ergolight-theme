@@ -8,7 +8,7 @@ from typing import Generic, Iterable, TypeVar
 T = TypeVar("T")
 MONEY_RE = re.compile(r"^(?P<currency>USD|BRL)\s+(?P<amount>\d+(?:\.\d{2})?)$")
 
-count = 0
+count = True
 
 @dataclasses.dataclass(slots=True, frozen=True)
 class Order(Generic[T]):

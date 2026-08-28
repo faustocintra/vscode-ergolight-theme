@@ -17,10 +17,7 @@ WAIT_AFTER_OPEN_SECONDS="${WAIT_AFTER_OPEN_SECONDS:-8}"
 WAIT_AFTER_FILE_SECONDS="${WAIT_AFTER_FILE_SECONDS:-3}"
 
 TEMP_ROOT="${TEMP_ROOT:-}"
-KEEP_PROFILE="${KEEP_PROFILE:-0}"
-
-SOURCE_USER_DATA_DIR="${SOURCE_USER_DATA_DIR:-${HOME}/.config/Code}"
-SOURCE_EXTENSIONS_DIR="${SOURCE_EXTENSIONS_DIR:-${HOME}/.vscode/extensions}"
+KEEP_TEMP="${KEEP_TEMP:-0}"
 
 require_command() {
   local command_name="$1"
@@ -93,11 +90,9 @@ if [[ -z "${TEMP_ROOT}" ]]; then
   TEMP_ROOT="$(mktemp -d /tmp/ergolight-vscode.XXXXXX)"
 fi
 
-USER_DATA_DIR="${TEMP_ROOT}/user-data"
-EXTENSIONS_DIR="${TEMP_ROOT}/extensions"
 VSIX_PATH="${TEMP_ROOT}/ergolight-theme.vsix"
 
-if [[ "${KEEP_PROFILE}" != "1" ]]; then
+if [[ "${KEEP_TEMP}" != "1" ]]; then
   cleanup() {
     rm -rf -- "${TEMP_ROOT}"
   }
@@ -105,25 +100,7 @@ if [[ "${KEEP_PROFILE}" != "1" ]]; then
   trap cleanup EXIT
 fi
 
-if [[ ! -d "${SOURCE_USER_DATA_DIR}" ]]; then
-  echo "Erro: perfil padrão do VS Code não encontrado: ${SOURCE_USER_DATA_DIR}" >&2
-  exit 1
-fi
-
-if [[ ! -d "${SOURCE_EXTENSIONS_DIR}" ]]; then
-  echo "Erro: diretório de extensões do VS Code não encontrado: ${SOURCE_EXTENSIONS_DIR}" >&2
-  exit 1
-fi
-
-mkdir -p "${USER_DATA_DIR}" "${EXTENSIONS_DIR}" "${SCREENSHOTS_DIR}"
-
-echo "Copiando perfil padrão do VS Code..."
-cp -a -- "${SOURCE_USER_DATA_DIR}/." "${USER_DATA_DIR}/"
-
-echo "Copiando extensões instaladas do VS Code..."
-cp -a -- "${SOURCE_EXTENSIONS_DIR}/." "${EXTENSIONS_DIR}/"
-
-mkdir -p "${USER_DATA_DIR}/User"
+mkdir -p "${SCREENSHOTS_DIR}"
 
 echo "Empacotando tema..."
 (
@@ -131,63 +108,21 @@ echo "Empacotando tema..."
   npx vsce package --no-dependencies --out "${VSIX_PATH}"
 )
 
-echo "Aplicando configurações ao perfil temporário do VS Code em: ${USER_DATA_DIR}"
-cat > "${USER_DATA_DIR}/User/settings.json" <<JSON
-{
-  "workbench.colorTheme": "${THEME_LABEL}",
-  "workbench.startupEditor": "none",
-  "workbench.activityBar.location": "hidden",
-  "workbench.statusBar.visible": false,
-  "workbench.editor.showTabs": false,
-  "workbench.sideBar.location": "left",
-  "breadcrumbs.enabled": false,
-  "editor.fontFamily": "IBM Plex Mono",
-  "editor.fontWeight": 500,
-  "editor.fontSize": 18,
-  "editor.lineHeight": 0,
-  "editor.minimap.enabled": false,
-  "editor.renderWhitespace": "none",
-  "editor.renderLineHighlight": "none",
-  "editor.guides.indentation": false,
-  "editor.scrollbar.vertical": "hidden",
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.semanticHighlighting.enabled": true,
-  "editor.renderValidationDecorations": "off",
-  "typescript.validate.enable": false,
-  "javascript.validate.enable": false,
-  "workbench.silentNotifications": true,
-  "window.commandCenter": false,
-  "window.restoreWindows": "none",
-  "security.workspace.trust.enabled": false,
-  "extensions.ignoreRecommendations": true,
-  "extensions.showRecommendationsOnlyOnDemand": true,
-  "chat.disableAIFeatures": true,
-  "github.gitAuthentication": false,
-  "git.enabled": false,
-  "telemetry.telemetryLevel": "off"
-}
-JSON
+echo "Instalando extensão empacotada no perfil padrão do VS Code..."
+"${CODE_CMD}" --install-extension "${VSIX_PATH}" --force
 
-echo "Instalando extensão empacotada no perfil temporário..."
-"${CODE_CMD}" \
-  --user-data-dir "${USER_DATA_DIR}" \
-  --extensions-dir "${EXTENSIONS_DIR}" \
-  --install-extension "${VSIX_PATH}" \
-  --force
-
-echo "Abrindo janela temporária do VS Code..."
-"${CODE_CMD}" \
-  --user-data-dir "${USER_DATA_DIR}" \
-  --extensions-dir "${EXTENSIONS_DIR}" \
-  --new-window "${REPO_DIR}" >/dev/null 2>&1 &
+echo "Abrindo VS Code com o perfil padrão..."
+"${CODE_CMD}" --new-window "${REPO_DIR}" >/dev/null 2>&1 &
 
 sleep "${WAIT_AFTER_OPEN_SECONDS}"
 focus_vscode_window
 resize_active_window_if_possible
 hide_vscode_sidebar
 
-echo "Configure a janela do Visual Studio Code"
+echo "Configure a janela do Visual Studio Code no perfil padrão"
+echo "Use o tema ${THEME_LABEL} e ajuste a janela antes de continuar."
 read -n 1 -s -r -p "Pressione qualquer tecla para continuar..."
+echo
 
 echo "Gerando screenshots em: ${SCREENSHOTS_DIR}"
 
@@ -197,11 +132,7 @@ for sample_file in "${SAMPLE_FILES[@]}"; do
 
   echo "Capturando: ${relative_path}"
 
-  "${CODE_CMD}" \
-    --user-data-dir "${USER_DATA_DIR}" \
-    --extensions-dir "${EXTENSIONS_DIR}" \
-    --reuse-window \
-    --goto "${sample_file}:5:10" >/dev/null 2>&1
+  "${CODE_CMD}" --reuse-window --goto "${sample_file}:5:10" >/dev/null 2>&1
 
   sleep "${WAIT_AFTER_FILE_SECONDS}"
   focus_vscode_window
@@ -213,6 +144,6 @@ done
 echo "Concluído."
 echo "Screenshots: ${SCREENSHOTS_DIR}"
 
-if [[ "${KEEP_PROFILE}" == "1" ]]; then
-  echo "Perfil temporário mantido em: ${TEMP_ROOT}"
+if [[ "${KEEP_TEMP}" == "1" ]]; then
+  echo "Diretório temporário mantido em: ${TEMP_ROOT}"
 fi
