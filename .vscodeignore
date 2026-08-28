@@ -2,8 +2,8 @@
 .vscode-test/**
 .gitignore
 samples/**
-screenshots/**
 scripts/**
 images/icon-source.png
 themes/ergolight-color-theme.original.json
 vsc-extension-quickstart.md
+screenshots/**

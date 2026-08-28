@@ -59,6 +59,13 @@ hide_vscode_sidebar() {
   sleep 0.5
 }
 
+close_current_file() {
+  focus_vscode_window
+  sleep 0.2
+  xdotool key --clearmodifiers ctrl+w
+  sleep 0.2
+}
+
 capture_active_window() {
   local output_path="$1"
 
@@ -138,7 +145,8 @@ for sample_file in "${SAMPLE_FILES[@]}"; do
   focus_vscode_window
   resize_active_window_if_possible
   capture_active_window "${output_file}"
-  sleep 10
+  close_current_file
+
 done
 
 echo "Concluído."
