@@ -1,5 +1,3 @@
-package br.edu.fatecfranca.api;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,16 +10,16 @@ interface Auditable {
 
 @Deprecated
 @SuppressWarnings({"unchecked", "rawtypes"})
-public final class ApiApplication<T extends Number & Serializable> implements Auditable {
+public final class java<T extends Number & Serializable> implements Auditable {
     private static final String NAME = "Ergolight";
     private final Map<String, List<T>> values;
 
-    public ApiApplication(Map<String, List<T>> values) {
+    public java(Map<String, List<T>> values) {
         this.values = values;
     }
 
     public static void main(String[] args) {
-        var app = new ApiApplication<Integer>(Map.of("orders", List.of(1, 2, 3)));
+        var app = new java<Integer>(Map.of("orders", List.of(1, 2, 3)));
         app.audit("started at " + LocalDateTime.now());
     }
 
