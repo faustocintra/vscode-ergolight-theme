@@ -1,4 +1,4 @@
-# Ergolight Sample
+# ErgoLight Sample
 
 > Blockquote with a [link](https://example.test) and `inline code`.
 

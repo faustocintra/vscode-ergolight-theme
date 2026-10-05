@@ -11,7 +11,7 @@ interface Auditable {
 @Deprecated
 @SuppressWarnings({"unchecked", "rawtypes"})
 public final class java<T extends Number & Serializable> implements Auditable {
-    private static final String NAME = "Ergolight";
+    private static final String NAME = "ErgoLight";
     private final Map<String, List<T>> values;
 
     public java(Map<String, List<T>> values) {

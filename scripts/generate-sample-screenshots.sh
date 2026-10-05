@@ -9,7 +9,7 @@ REPO_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
 CODE_CMD="${CODE_CMD:-code}"
 SPECTACLE_CMD="${SPECTACLE_CMD:-spectacle}"
 
-THEME_LABEL="${THEME_LABEL:-Ergolight Theme}"
+THEME_LABEL="${THEME_LABEL:-ErgoLight Theme}"
 SAMPLES_DIR="${SAMPLES_DIR:-${REPO_DIR}/samples}"
 SCREENSHOTS_DIR="${SCREENSHOTS_DIR:-${REPO_DIR}/screenshots}"
 

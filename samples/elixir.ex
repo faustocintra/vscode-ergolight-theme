@@ -1,4 +1,4 @@
-defmodule Ergolight.Sample do
+defmodule ErgoLight.Sample do
   @moduledoc "Exercise atoms, module names, sigils, guards and pipelines."
   @version "1.0.0"
 

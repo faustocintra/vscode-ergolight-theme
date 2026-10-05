@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Ergolight.Sample;
+namespace ErgoLight.Sample;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public sealed class AuditAttribute : Attribute { }

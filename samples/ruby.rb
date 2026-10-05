@@ -1,4 +1,4 @@
-module Ergolight
+module ErgoLight
   VERSION = "1.0.0"
 
   class Order

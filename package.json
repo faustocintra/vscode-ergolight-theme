@@ -1,8 +1,8 @@
 {
   "name": "ergolight-theme",
-  "displayName": "Ergolight Theme",
+  "displayName": "ErgoLight Theme",
   "description": "An ergonomic light theme with clear syntax colors and comfortable contrast for long coding sessions.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "goncin",
   "license": "SEE LICENSE IN LICENSE",
   "pricing": "Free",
@@ -24,7 +24,7 @@
   "contributes": {
     "themes": [
       {
-        "label": "Ergolight Theme",
+        "label": "ErgoLight Theme",
         "uiTheme": "vs",
         "path": "./themes/ergolight-color-theme.json"
       }

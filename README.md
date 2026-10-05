@@ -1,4 +1,4 @@
-# Ergolight Theme
+# ErgoLight Theme
 
 An ergonomic light theme for Visual Studio Code, designed for clear syntax distinction, soft contrast, and comfortable long coding sessions.
 
